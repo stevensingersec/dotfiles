@@ -1,13 +1,25 @@
 # Bash function to URL-encode a string using Python
-urlencode() {
-    local string="$1"
-    python3 -c "import sys, urllib.parse as up; print(up.quote_plus(sys.argv[1]),end='')" "$string"
+urldecode() {
+    if [[ -n "$1" ]]; then
+        # If an argument is provided, decode the argument
+        local string="$1"
+        python3 -c "import sys, urllib.parse as up; print(up.unquote_plus(sys.argv[1]), end='')" "$string"
+    else
+        # If no argument is provided, read from stdin and decode
+        python3 -c "import sys, urllib.parse as up; print(up.unquote_plus(sys.stdin.read()), end='')"
+    fi
 }
 
 # Bash function to URL-decode a string using Python
-urldecode() {
-    local string="$1"
-    python3 -c "import sys, urllib.parse as up; print(up.unquote_plus(sys.argv[1]),end='')" "$string"
+urlencode() {
+    if [[ -n "$1" ]]; then
+        # If an argument is provided, encode the argument
+        local string="$1"
+        python3 -c "import sys, urllib.parse as up; print(up.quote_plus(sys.argv[1]), end='')" "$string"
+    else
+        # If no argument is provided, read from stdin and encode
+        python3 -c "import sys, urllib.parse as up; print(up.quote_plus(sys.stdin.read()), end='')"
+    fi
 }
 
 # Function to capture state information for easy cloning into new terminals, such as IP=x.x.x.x declarations 

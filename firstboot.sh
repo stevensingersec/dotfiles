@@ -36,6 +36,7 @@ if [[ ! -d $HOME/scripts ]] ; then
   git clone https://github.com/jpillora/chisel.git
   git clone https://github.com/utoni/ptunnel-ng.git
   git clone https://github.com/CiscoCXSecurity/udp-proto-scanner
+  git clone https://github.com/nahamsec/lazyrecon
   wget https://github.com/nccgroup/SocksOverRDP/releases/download/v1.0/SocksOverRDP-x64.zip
   wget https://www.proxifier.com/download/ProxifierPE.zip
 
