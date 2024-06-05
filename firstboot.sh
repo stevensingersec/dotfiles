@@ -35,8 +35,11 @@ if [[ ! -d $HOME/scripts ]] ; then
   git clone https://github.com/lukebaggett/dnscat2-powershell.git
   git clone https://github.com/jpillora/chisel.git
   git clone https://github.com/utoni/ptunnel-ng.git
-  git clone https://github.com/CiscoCXSecurity/udp-proto-scanner
-  git clone https://github.com/nahamsec/lazyrecon
+  git clone https://github.com/CiscoCXSecurity/udp-proto-scanner.git
+  git clone https://github.com/nahamsec/lazyrecon.git
+  git clone https://github.com/insidetrust/statistically-likely-usernames.git
+  git clone https://github.com/Kevin-Robertson/Invoke-TheHash.git
+  git clone https://github.com/dafthack/DomainPasswordSpray.git
   wget https://github.com/nccgroup/SocksOverRDP/releases/download/v1.0/SocksOverRDP-x64.zip
   wget https://www.proxifier.com/download/ProxifierPE.zip
 
