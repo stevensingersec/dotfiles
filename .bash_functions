@@ -51,3 +51,13 @@ recall_env() {
         echo "File $file not found"
     fi
 }
+
+# Function to perform DNS-over-HTTPS queries
+function doh_query() {
+    local domain="$1"
+    local type="${2:-A}"  # Default to A record if not specified
+    local doh_url="https://cloudflare-dns.com/dns-query"
+
+    # Perform the DNS query over HTTPS
+    curl -s -H "accept: application/dns-json" "${doh_url}?name=${domain}&type=${type}" 
+}
