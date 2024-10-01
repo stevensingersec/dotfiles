@@ -2,8 +2,7 @@
 
 MSF_RC_PATH="$HOME/.msf4/msfconsole.rc"
 if [[ ! -f "$MSF_RC_PATH" ]] ; then
-    echo "Cannot find $MSF_RC_PATH"
-    exit 1
+    return 1
 fi
 
 
