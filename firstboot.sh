@@ -20,7 +20,7 @@ sudo apt install xclip
 
 # clone SecLists
 if [[ ! -d /usr/share/wordlists/SecLists ]] ; then
-    cd /usr/share/wordlists && git clone https://github.com/danielmiessler/SecLists.git
+    cd /usr/share/wordlists && sudo git clone https://github.com/danielmiessler/SecLists.git
 fi
 
 # create scripts directory and clone important security tools into it
@@ -60,13 +60,13 @@ if [[ -f /etc/john/john.conf ]] ; then
     if [[ ! -f /etc/john/john.conf.bak ]] ; then
         cd /etc/john
         cp john.conf john.conf.bak
-        curl -s https://gist.githubusercontent.com/dzmitry-savitski/65c249051e54a8a4f17a534d311ab3d4/raw/5514e8b23e52cac8534cc3fdfbeb61cbb351411c/user-name-rules.txt >> /etc/john/john.conf
+        sudo curl -s https://gist.githubusercontent.com/dzmitry-savitski/65c249051e54a8a4f17a534d311ab3d4/raw/5514e8b23e52cac8534cc3fdfbeb61cbb351411c/user-name-rules.txt >> /etc/john/john.conf
     fi
 fi
 
 # if rockyou.txt.gz is present and not already unzipped then unzip it
 if [[ -f /usr/share/wordlists/rockyou.txt.gz ]] ; then
     if [[ ! -f /usr/share/wordlists/rockyou.txt ]] ; then
-        cd /usr/share/wordlists && gunzip /usr/share/wordlists/rockyou.txt.gz
+        cd /usr/share/wordlists && sudo gunzip /usr/share/wordlists/rockyou.txt.gz
     fi
 fi
