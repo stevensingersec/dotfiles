@@ -59,7 +59,7 @@ fi
 if [[ -f /etc/john/john.conf ]] ; then
     if [[ ! -f /etc/john/john.conf.bak ]] ; then
         cd /etc/john
-        cp john.conf john.conf.bak
+        sudo cp john.conf john.conf.bak
         sudo curl -s https://gist.githubusercontent.com/dzmitry-savitski/65c249051e54a8a4f17a534d311ab3d4/raw/5514e8b23e52cac8534cc3fdfbeb61cbb351411c/user-name-rules.txt >> /etc/john/john.conf
     fi
 fi
