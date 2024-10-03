@@ -13,6 +13,6 @@ alias eth0='ip -f inet addr show eth0 | grep -Po "inet \K[\d.]+"| xargs echo -n'
 alias eth1='ip -f inet addr show eth1 | grep -Po "inet \K[\d.]+"| xargs echo -n'
 alias tun0='ip -f inet addr show tun0 | grep -Po "inet \K[\d.]+"| xargs echo -n'
 alias xclip='xclip -selection c'
-alias wanip='dig +short o-o.myaddr.l.google.com @ns1.google.com TXT|sed "s/\"//g" | xargs echo -n'
+alias wanip='dig +short o-o.myaddr.l.google.com @ns1.google.com TXT -4|sed "s/\"//g" | xargs echo -n'
 # This is for pentesting, don't get excited
 alias ssh='ssh -o StrictHostKeyChecking=no'
