@@ -1,0 +1,54 @@
+#!/bin/bash
+
+MSF_RC_PATH="$HOME/.msf4/msfconsole.rc"
+
+cat <<EOF > $MSF_RC_PATH
+# load the alias module so we can create some easy shortcuts
+load alias
+# set some aliases for common recurring tasks
+alias j "jobs -v"
+alias s "sessions -v"
+alias -f w "workspace"
+alias so "show options"
+alias sa "show advanced"
+alias -f e "exploit -j -z"
+alias psexec_psh "use exploit/windows/smb/psexec_psh"
+alias psexec_cmd "use auxiliary/admin/smb/psexec_command"
+alias psexec "use exploit/windows/smb/psexec"
+alias handler "use exploit/multi/handler"
+alias screen_spy "use post/windows/gather/screen_spy"
+alias sphttps "set payload windows/meterpreter/reverse_https"
+alias sphttp "set payload windows/meterpreter/reverse_http"
+alias sptcp "set payload windows/meterpreter/reverse_tcp"
+alias smart_hashdump "use post/windows/gather/smart_hashdump"
+setg exitonsession false
+# Let's make it at least a little harder for logs to show we're running msf
+setg MeterpreterUserAgent "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Win64; x64; Trident/4.0)"
+setg MeterpreterServerName "Microsoft-IIS/8.0"
+# Metasploit is not too verbose by default so it’s useful to turn on some debug settings
+set ConsoleLogging true
+set LogLevel 5
+set SessionLogging true
+set TimestampOutput true
+# In this way you will be still in listening mode even if a closed meterpreter connection occurs.
+set ExitOnSession false 
+# it is convenient to know what is going on and when
+set PROMPT %T S:%S J:%J 
+# log everything to msf_verbose_log.txt
+spool msf_verbose_log.txt
+EOF
+
+# Update metasploit rc file to automatically populate LHOST variable based on which NICs are active
+if ip -f inet addr show tun0 2>&1 | grep -qPo "inet \K[\d.]+"; then
+    # add LHOST global variable for tun0 interface if up 
+    echo "setg LHOST $(ip -f inet addr show tun0 | grep -oP 'inet \K[\d.]+')" >> ~/.msf4/msfconsole.rc
+elif ip -f inet addr show eth1 2>&1 | grep -qPo "inet \K[\d.]+"; then
+    # if tun0 isn't up then use the IP for eth1
+    echo "setg LHOST $(ip -f inet addr show eth1 | grep -oP 'inet \K[\d.]+')" >> ~/.msf4/msfconsole.rc
+elif ip -f inet addr show eth0 2>&1 | grep -qPo "inet \K[\d.]+"; then
+    # finally just use the eth0 interface IP if the other two aren't up
+    echo "setg LHOST $(ip -f inet addr show eth0 | grep -oP 'inet \K[\d.]+')" >> ~/.msf4/msfconsole.rc
+else
+    echo "No common network interfaces found."
+fi
+

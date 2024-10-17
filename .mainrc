@@ -1,0 +1,19 @@
+#!/bin/bash
+## This script calls the various .bash_* scripts in the same directory
+## is intended to be invoked from the main .zshrc or .bashrc with "source ~/dotfiles/.mainrc" 
+
+# Get the directory of the script
+SCRIPT_DIR=$(dirname "$0")
+
+# Convert relative path to absolute path
+SCRIPT_DIR=$(cd "$SCRIPT_DIR" && pwd)
+
+# store bash dotfiles in array, excluding this script
+bash_dotfiles=($(ls $SCRIPT_DIR/.bash_*))
+
+# load each .bash_* rc file
+for bashfile in $bash_dotfiles; do
+    if [ -f "$bashfile" ]; then
+        . "$bashfile"
+    fi
+done
