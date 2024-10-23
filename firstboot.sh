@@ -18,9 +18,9 @@ sudo apt install sshuttle
 sudo apt install sshpass
 sudo apt install xclip
 sudo apt install openssh-server
-sudo pip3 install pyftpdlib
-sudo pip3 install uploadserver
-sudo pip3 install name-that-hash
+sudo pip3 install pyftpdlib --break-system-packages
+sudo pip3 install uploadserver --break-system-packages
+sudo pip3 install name-that-hash --break-system-packages
 
 # clone SecLists
 if [[ ! -d /usr/share/wordlists/SecLists ]] ; then
@@ -119,8 +119,8 @@ echo "lightdm.conf successfully updated. Backup is available at $BACKUP_FILE"
 
 ## Configure ssh server
 # Create dir to backup default keys
-mkdir /etc/ssh/default_keys
-mv /etc/ssh/ssh_host_* /etc/ssh/default_keys/
+sudo mkdir /etc/ssh/default_keys
+sudo mv /etc/ssh/ssh_host_* /etc/ssh/default_keys/
 # generate new keys
 sudo dpkg-reconfigure openssh-server
 # To temporarily start up the SSH service it’s recommended to use ssh.socket:
