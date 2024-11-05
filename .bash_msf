@@ -1,6 +1,8 @@
 #!/bin/bash
 
+mkdir "$HOME/.msf4"
 MSF_RC_PATH="$HOME/.msf4/msfconsole.rc"
+touch $MSF_RC_PATH
 
 cat <<EOF > $MSF_RC_PATH
 # load the alias module so we can create some easy shortcuts
