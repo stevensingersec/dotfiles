@@ -9,10 +9,6 @@ else
   mkdir "$MSF_RC_DIR"
 fi
 
-
-
-
-
 cat <<EOF > $MSF_RC_PATH
 # load the alias module so we can create some easy shortcuts
 load alias
