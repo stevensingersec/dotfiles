@@ -19,6 +19,7 @@ sudo apt install sshpass
 sudo apt install xclip
 sudo apt install openssh-server
 sudo apt install gobuster
+sudo apt install lynx
 sudo pip3 install pyftpdlib --break-system-packages
 sudo pip3 install uploadserver --break-system-packages
 sudo pip3 install name-that-hash --break-system-packages
